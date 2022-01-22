@@ -17,6 +17,7 @@ app.get('/',(_, response) => {
   response.json({ info: 'Messier API starting point' });
 });
 
+app.post('/dsos', db.createDso);
 app.get('/dsos', db.getDsos);
 
 app.listen(port, () => {
