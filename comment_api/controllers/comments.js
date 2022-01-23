@@ -1,28 +1,19 @@
+const commentsRouter = require('express').Router();
 const Comment = require('../models/Comment');
-const mongoose = require('mongoose');
 
-const mongoDB = 'mongodb://127.0.0.1/dso_comments';
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-const getComments = async () => {
+commentsRouter.get('/', async (_, response) => {
   const result = await Comment.find({});
-  return result;
-};
+  response.json(result);
+});
 
-const getCommentsById = async (id) => {
-  const result = await Comment.find({'dsoId': id});
-  return result;
-}
+commentsRouter.get('/:id', async (request, response) => {
+  const comments = await Comment.find({'dsoId': Number(request.params.id)});
+  response.json(comments);
+})
 
-const createComment = async (body) => {
-  const newComment = new Comment(body);
-  await newComment.save();
-};
+commentsRouter.post('/', async (request, response) => {
+  const result = await new Comment(request.body).save();
+  response.status(201).json(result);
+});
 
-module.exports = {
-  createComment,
-  getComments,
-  getCommentsById,
-};
+module.exports = commentsRouter;

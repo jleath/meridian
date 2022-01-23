@@ -1,42 +1,11 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const db = require('./controllers/comments');
+const app = require('./app');
+const http = require('http');
+const config = require('./util/config');
+const logger = require('./util/logger');
 
-const port = 3002;
-const app = express();
-app.use(cors());
+const server = http.createServer(app);
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-
-app.get('/', (_, response) => {
-  response.json({ info: 'Comment API starting point' });
-});
-
-app.get('/comments', async (_, response) => {
-  const result = await db.getComments();
-  response.json(result);
-});
-
-app.get('/comments/:id', async (request, response) => {
-  const comments = await db.getCommentsById(Number(request.params.id));
-  response.json(comments);
-})
-
-app.post('/comments', async (request, response) => {
-  console.log(request.body);
-  const result = await db.createComment(request.body);
-  console.log(result);
-  response.json(result);
-});
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
+server.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}.`);
 });
 

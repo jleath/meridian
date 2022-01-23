@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3003/dsos';
-const COMMENT_DB_URL = 'http://localhost:3002/comments';
+const API_URL = 'http://159.223.170.76/dsos';
+const COMMENT_DB_URL = 'http://159.223.170.76/comments';
 
 const DSO = ({ dso }) => {
   const [comments, setComments] = useState([]);
