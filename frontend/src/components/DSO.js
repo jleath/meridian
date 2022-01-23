@@ -25,17 +25,16 @@ const DSO = ({ dso }) => {
   };
 
   return (
-    <div>
-      <h2>{dso.id} - {dso.name}</h2>
+    <div className="dso-card">
+      <h2>{dso.messier_no} {dso.name !== '' ? `- ${dso.name}` : ''}</h2>
+      <img alt={dso.messier_no} src={`https://www.messier.seds.org/Jpg/m${dso.messier_no.slice(1)}.jpg`}/>
       <ul>
-        {
-          comments.map(comment => <li key={comment._id}>{comment.comment}</li>)
-        }
+        {comments.map(comment => <li key={comment._id}>{comment.comment}</li>)}
       </ul>
       <form onSubmit={handleFormSubmit}>
         <input type="text" value={commentText} onChange={handleCommentChange}/>
         <br/>
-        <button id="blog-create-button" type="submit">create</button>
+        <button id="blog-create-button" type="submit">Add Comment</button>
       </form>
     </div>
   );

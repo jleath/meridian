@@ -1,26 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const app = express();
-const port = 3003;
-const db = require('./queries');
+const app = require('./app');
+const http = require('http');
+const config = require('./util/config');
+const logger = require('./util/logger');
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+const server = http.createServer(app);
 
-app.get('/',(_, response) => {
-  response.json({ info: 'Messier API starting point' });
-});
-
-app.post('/dsos', db.createDso);
-app.get('/dsos', db.getDsos);
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
+server.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}`);
 });

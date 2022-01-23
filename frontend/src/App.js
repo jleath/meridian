@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dsoService from './services/dsoService';
 import DSO from './components/DSO';
+import './index.css';
 
 const App = () => {
   const [dsos, setDsos] = useState([]);
@@ -8,16 +9,18 @@ const App = () => {
   useEffect(() => {
     const fetchDsos = async () => {
       const dsos = await dsoService.getDsos();
-      setDsos(dsos);
+      setDsos(dsos.sort((a, b) => a.messier_no.slice(1) - b.messier_no.slice(1)));
     }
     fetchDsos();
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Messier Objects</h1>
-      {dsos.map(dso => <DSO key={dso.id} dso={dso}/>)}
-    </div>
+      <div className="dso-collection">
+        {dsos.map(dso => <DSO key={dso.id} dso={dso}/>)}
+      </div>
+    </>
   );
 }
 

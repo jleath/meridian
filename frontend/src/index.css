@@ -1,0 +1,24 @@
+body {
+  margin: 5px;
+  padding: 0px;
+}
+.dso-collection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+  width: 80%;
+}
+.dso-card {
+  text-align: center;
+  background-color: darkgrey;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  width: 250px;
+}
+
+.dso-card img{
+  width: 200px;
+}
