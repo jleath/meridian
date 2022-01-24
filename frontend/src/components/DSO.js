@@ -15,9 +15,11 @@ const DSO = ({ dso }) => {
 
   const handleFormSubmit = async event => {
     event.preventDefault();
-    const newComment = await commentService.addComment(dso.id, commentText);
-    setComments(comments.concat(newComment));
-    setCommentText('');
+    if (commentText.trim() !== '') {
+      const newComment = await commentService.addComment(dso.id, commentText);
+      setComments(comments.concat(newComment));
+      setCommentText('');
+    }
   };
 
   const handleCommentChange = event => {
@@ -28,14 +30,18 @@ const DSO = ({ dso }) => {
     <div className="dso-card">
       <h2>{dso.messier_no} {dso.name !== '' ? `- ${dso.name}` : ''}</h2>
       <img alt={dso.messier_no} src={`https://www.messier.seds.org/Jpg/m${dso.messier_no.slice(1)}.jpg`}/>
-      <ul>
-        {comments.map(comment => <li key={comment._id}>{comment.comment}</li>)}
-      </ul>
-      <form onSubmit={handleFormSubmit}>
-        <input type="text" value={commentText} onChange={handleCommentChange}/>
-        <br/>
-        <button id="blog-create-button" type="submit">Add Comment</button>
-      </form>
+      <div className="dso-info">
+        <p>{dso.type}</p>
+        <p>{dso.constellation}</p>
+        <form onSubmit={handleFormSubmit}>
+          <input type="text" value={commentText} onChange={handleCommentChange}/>
+          <br/>
+          <button id="blog-create-button" type="submit">Add Comment</button>
+        </form>
+        <ul>
+          {comments.map(comment => <li key={comment._id}>{comment.comment}</li>)}
+        </ul>
+      </div>
     </div>
   );
 };

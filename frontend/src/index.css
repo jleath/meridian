@@ -7,7 +7,6 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 10px;
   width: 80%;
 }
 .dso-card {
@@ -17,6 +16,20 @@ body {
   margin: 5px;
   padding: 5px;
   width: 250px;
+  border-radius: 5px;
+}
+
+.dso-card ul {
+  margin: 0;
+  padding: 0;
+}
+
+.dso-card p {
+  margin: 0;
+}
+
+.dso-card li {
+  list-style-type: none;
 }
 
 .dso-card img{
