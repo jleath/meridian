@@ -6,6 +6,13 @@ const requestLogger = morgan(':method :url :status :res[content-length] - :respo
 
 const errorHandler = (error, request, response, next) => {
   logger.error(error.message);
+
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformed request' });
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message });
+  }
+
   next(error);
 };
 

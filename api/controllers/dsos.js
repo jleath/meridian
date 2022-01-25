@@ -1,5 +1,6 @@
 const dsoRouter = require('express').Router();
 const config = require('../util/config')
+const logger = require('../util/logger');
 
 const Pool = require('pg').Pool;
 const pool = new Pool({
@@ -14,6 +15,7 @@ const selectString = 'SELECT * FROM dsos';
 const createString = 'INSERT INTO dsos (messier_no, name, type, constellation, magnitude, ascension, declination) VALUES ($1, $2, $3, $4, $5, $6, $7)';
 
 dsoRouter.get('/', (request, response) => {
+  logger.info(`Querying Postgres: ${selectString}`);
   pool.query(selectString, (error, results) => {
     if (error) {
       throw error;
