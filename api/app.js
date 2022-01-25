@@ -23,8 +23,8 @@ app.use(express.json());
 if (process.env.NODE_ENV !== 'test') {
   app.use(middleware.requestLogger);
 }
-app.use('/api/dsos', dsoRouter);
-app.use('/api/comments', commentsRouter);
+app.use('/dsos', dsoRouter);
+app.use('/comments', commentsRouter);
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
