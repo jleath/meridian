@@ -9,11 +9,20 @@ const App = () => {
   const [longitude, setLongitude] = useState(NaN)
 
   useEffect(() => {
+    const success = pos => {
+      setLatitude(pos.coords.latitude);
+      setLongitude(pos.coords.longitude);
+    };
+    const error = err => {
+      console.log(err);
+    };
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(pos => {
-        setLatitude(pos.coords.latitude);
-        setLongitude(pos.coords.longitude);
-      });
+      navigator.geolocation.getCurrentPosition(success, error, options);
     }
   }, []);
 
