@@ -33,6 +33,8 @@ const DSO = ({ dso }) => {
       <div className="dso-info">
         <p>{dso.type}</p>
         <p>{dso.constellation}</p>
+        <p>{dso.alt ? `Altitude: ${dso.alt.toFixed(2)}` : ''}</p>
+        <p>{dso.az ? `Azimuth: ${dso.az.toFixed(2)}` : ''}</p>
         <form onSubmit={handleFormSubmit}>
           <input type="text" value={commentText} onChange={handleCommentChange}/>
           <br/>
