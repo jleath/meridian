@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dsoService from './services/dsoService';
 import DSO from './components/DSO';
+import LocationInput from './components/LocationInput';
 import './index.css';
 
 const App = () => {
@@ -8,7 +9,7 @@ const App = () => {
   const [latitude, setLatitude] = useState(NaN);
   const [longitude, setLongitude] = useState(NaN)
 
-  useEffect(() => {
+  const useGeolocation = () => {
     const success = pos => {
       setLatitude(pos.coords.latitude);
       setLongitude(pos.coords.longitude);
@@ -24,7 +25,9 @@ const App = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(success, error, options);
     }
-  }, []);
+  };
+
+  useEffect(useGeolocation, []);
 
   useEffect(() => {
     const fetchDsos = async () => {
@@ -41,9 +44,15 @@ const App = () => {
     fetchDsos();
   }, [latitude, longitude]);
 
+  const setLocation = (lat, lon) => {
+    setLatitude(lat);
+    setLongitude(lon);
+  };
+
   return (
     <>
       <h1>Messier Objects</h1>
+      <LocationInput useGeolocation={useGeolocation} setLocation={setLocation}/>
       <p>{latitude && longitude ? `Using Coordinates (${latitude}, ${longitude})`: 'No coordinates specified'}</p>
       <div className="dso-collection">
         {dsos.map(dso => <DSO key={dso.id} dso={dso}/>)}
