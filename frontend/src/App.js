@@ -26,7 +26,7 @@ const App = () => {
         dsoResults = await dsoService.getDsos();
       }
       if (dsoResults) {
-        setDsos(dsoResults);
+        setDsos(dsoResults.sort((a, b) => a.messier_no.slice(1) - b.messier_no.slice(1)));
       }
     }
     fetchDsos();

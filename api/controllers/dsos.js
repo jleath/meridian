@@ -16,7 +16,7 @@ const pool = new Pool({
 const createString = 'INSERT INTO dsos (messier_no, name, type, constellation, magnitude, ascension, declination) VALUES ($1, $2, $3, $4, $5, $6, $7)';
 
 dsoRouter.get('/', (request, response) => {
-  const selectString = 'SELECT * FROM dsos ORDER BY messier_no';
+  const selectString = 'SELECT * FROM dsos';
   logger.info(`Querying Postgres: ${selectString}`);
   pool.query(selectString, (error, results) => {
     if (error) {
@@ -30,7 +30,7 @@ dsoRouter.get('/:latitude/:longitude/:currTime', async (request, response) => {
   const latitude = Number(request.params.latitude);
   const longitude = Number(request.params.longitude);
   const currTime = new Date(Number(request.params.currTime));
-  const selectString = 'SELECT * FROM dsos ORDER BY messier_no';
+  const selectString = 'SELECT * FROM dsos';
   const result = await pool.query(selectString);
   const dsos = result.rows.map(dso => {
     const ra = Number(dso.ascension);
