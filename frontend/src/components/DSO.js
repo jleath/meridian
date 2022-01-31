@@ -16,7 +16,7 @@ const DSO = ({ dso }) => {
   const handleFormSubmit = async event => {
     event.preventDefault();
     if (commentText.trim() !== '') {
-      const newComment = await commentService.addComment(dso.id, commentText);
+      const newComment = await commentService.addComment(dso.id, dso.messier_no, dso.name, commentText);
       setComments(comments.concat(newComment));
       setCommentText('');
     }
