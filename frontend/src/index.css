@@ -1,17 +1,107 @@
-body {
-  margin: 5px;
-  padding: 0px;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&family=Space+Grotesk:wght@600&display=swap');
+
+@font-face {
+  font-family: 'Edge of the Galaxy';
+  src: local('Edge of the Galaxy'), url(./fonts/EdgeOfTheGalaxyPoster-3zRAp.otf) format('opentype');
 }
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+} */
+
+html {
+  background-color: #040404;
+  color: #d7d9ce;
+}
+
+h1 {
+  font-family: 'Edge of the Galaxy', 'Space Grotesk';
+  letter-spacing: .3rem;
+  font-size: 6rem;
+}
+
+h2 {
+  font-family: 'Space Grotesk';
+  font-size: 1.6rem;
+}
+
+header {
+  display: flex;
+  height: 150px;
+  padding-left: 40px;
+  align-items: center;
+  background: rgb(12,116,137);
+  background: -moz-linear-gradient(180deg, rgba(12,116,137,1) 0%, rgba(4,4,4,1) 90%);
+  background: -webkit-linear-gradient(180deg, rgba(12,116,137,1) 0%, rgba(4,4,4,1) 90%);
+  background: linear-gradient(180deg, rgba(12,116,137,1) 0%, rgba(4,4,4,1) 90%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c7489",endColorstr="#040404",GradientType=1);
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.main-container {
+  width: 98%;
+  margin: 0 auto;
+}
+
 .dso-collection {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 80%;
+  margin: 0 auto;
 }
+
 .dso-card {
   text-align: center;
-  background-color: darkgrey;
+  background-color: #13505b;
   border: 1px solid black;
   margin: 5px;
   padding: 5px;
@@ -24,16 +114,92 @@ body {
   padding: 0;
 }
 
+.dso-card h2 {
+  margin: 10px;
+}
+
 .dso-card p {
-  margin: 0;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+.dso-card input {
+  margin: 5px 0;
+}
+
+.dso-card button {
+  width: auto;
+  margin: 5px 0;
 }
 
 .dso-card li {
   list-style-type: none;
+  margin: 5px;
 }
 
 .dso-card img{
   width: 200px;
+  height: 180px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.location-input {
+  display: flex;
+  color: #d7d9ce;
+  background-color: rgba(12, 116, 137, .2);
+  flex-direction: column;
+  width: 370px;
+  padding: 20px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.location-input form {
+  padding: 5px;
+}
+
+.location-input p {
+  color: red;
+}
+
+.form-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+button {
+  font-family: 'Space Grotesk';
+  width: 200px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: rgba(17, 157, 164, 0.5) 0px 5px 15px;
+}
+
+label {
+  font-family: 'Space Grotesk';
+  font-size: 1.1rem;
+  width: 130px;
+}
+
+input {
+  background-color: #d7d9ce;
+  color: #040404;
+  font-family: 'Source Sans Pro';
+  padding: 10px;
+  box-shadow: none;
+  border: none;
+  width: 200px;
+  outline: none;
+  border-radius: 5px;
 }
 
 .loader {

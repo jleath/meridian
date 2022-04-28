@@ -34,15 +34,24 @@ const LocationInput = props => {
   };
 
   return (
-    <div>
+    <>
       <p>{inputErrorMsg ? inputErrorMsg : ''}</p>
       <form onSubmit={handleCoordsSubmit} onReset={handleCoordsReset}>
-        <input type="text" value={latitudeInput} onChange={handleLatitudeInputChange}></input>
-        <input type="text" value={longitudeInput} onChange={handleLongitudeInputChange}></input>
-        <button type="submit">Set Location</button>
-        <button type="reset">Use Current Location</button>
+        <h2>Enter your location</h2>
+        <div className="form-row">
+          <label htmlFor="latitude">Latitude</label>
+          <input id="latitude" type="text" value={latitudeInput} onChange={handleLatitudeInputChange}></input>
+        </div>
+        <div className="form-row">
+          <label htmlFor="longitude">Longitude</label>
+          <input id="longitude" type="text" value={longitudeInput} onChange={handleLongitudeInputChange}></input>
+        </div>
+        <div className="form-row">
+          <button type="submit">Set Location</button>
+          <button type="reset">Use Current Location</button>
+        </div>
       </form>
-    </div>
+    </>
   );
 };
 

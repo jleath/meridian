@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dsoService from './services/dsoService';
 import DSO from './components/DSO';
 import LocationInput from './components/LocationInput';
+import './reset.css';
 import './index.css';
 
 const App = () => {
@@ -65,11 +66,17 @@ const App = () => {
 
   return (
     <>
-      <h1>Messier Objects</h1>
-      <LocationInput useGeolocation={useGeolocation} setLocation={setLocation}/>
-      <p>{latitude && longitude ? `Using Coordinates (${latitude}, ${longitude})`: 'No coordinates specified'}</p>
+    <header>
+      <h1>Meridian</h1>
+    </header>
+    <div className="main-container">
+      <div className="location-input">
+        <LocationInput useGeolocation={useGeolocation} setLocation={setLocation}/>
+        <h3>{latitude && longitude ? `Using Coordinates (${latitude}, ${longitude})`: 'No coordinates specified'}</h3>
+      </div>
       { contentLoaded ? <DSOCollection/> : <div className="loader">Loading...</div>}
       <p>{ loadFailed ? 'Failed to load content' : ''}</p>
+    </div>
     </>
   );
 }
